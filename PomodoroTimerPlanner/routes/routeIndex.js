@@ -26,4 +26,8 @@ router.get('/app-profile', async(req, res) => {
     console.log('profile page')
 })
 
+router.get('/form-editor', async(req, res) => {
+    res.render('form-editor')
+})
+
 module.exports = router;
