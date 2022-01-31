@@ -1,0 +1,15 @@
+{
+  "name": "pomodorotimerplanner",
+  "version": "1.0.0",
+  "description": "proyecto final desarrollo web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "equipo 12",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8"
+  }
+}
