@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Pomodoro Task Manager</title>
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png"> -->
-    <!-- Custom Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-
-</head>
-
-<body>
+<%- include ("./templates/_header") %>
 
     <!--*******************
         Preloader start
@@ -361,7 +346,7 @@
                     </div>
                 </div>
 
-                <h2> Estadíticas </h2>
+                <h2> Estadísticas </h2>
 
                 <div class="row">
                     <div class="col-3">
@@ -693,92 +678,4 @@
             Content body end
         ***********************************-->
         
-        
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-            </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-    </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-    <script src="./js/dashboard/dashboard-2.js"></script>    
-
-
-    <script>
-        window.localStorage.clear();
-        $(document).ready(function () {
-
-$('#list-items').html(localStorage.getItem('listItems'));
-
-$('.add-items').submit(function(event) 
-{
-event.preventDefault();
-
-var item = $('#todo-list-item').val();
-if(item) 
-{
-$('#list-items').append("<li><div class='round d-inline-block'><input type='checkbox' id='checkbox' /><label for='checkbox'></label></div><label for='checkbox'>" + item + "</label><a class='remove'><i class='fa fa-trash'></i></a></li>");
-
-
-
-
-// <div class='round'><input type='checkbox' id='checkbox' /><label for='checkbox'></label></div><label for='checkbox'>
-
-// dfdfdf</label>
-
-
-
-
-
-localStorage.setItem('listItems', $('#list-items').html());
-
-$('#todo-list-item').val("");
-}
-
-});
-
-$(document).on('change', '.checkbox', function() 
-{
-if($(this).attr('checked')) 
-{
-$(this).removeAttr('checked');
-} 
-else 
-{
-$(this).attr('checked', 'checked');
-}
-
-$(this).parent().toggleClass('completed');
-
-localStorage.setItem('listItems', $('#list-items').html());
-});
-
-$(document).on('click', '.remove', function() 
-{
-$(this).parent().remove();
-
-localStorage.setItem('listItems', $('#list-items').html());
-});
-
-});
-    </script>
-</body>
-
-</html>
+<%- include ("./templates/_footer") %>
