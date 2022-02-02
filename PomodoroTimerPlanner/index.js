@@ -4,6 +4,8 @@ const path = require('path');
 const morgan = require('morgan');
 const dotenv = require("dotenv");
 
+const mongodb = require('./routes/mongoConnect')
+
 dotenv.config();
 
 const app = express()
