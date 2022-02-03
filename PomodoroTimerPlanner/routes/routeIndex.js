@@ -38,4 +38,9 @@ router.get('/form-editor', async(req, res) => {
     res.render('form-editor')
 })
 
+router.get('/logoff', (req, res) => {
+    res.clearCookie('token')
+    res.redirect('/')
+})
+
 module.exports = router;
