@@ -1,6 +1,14 @@
 const { render } = require('ejs');
 const express = require('express');
+let verify = require('./../middleware/verifyAccess')
+let bcrypt = require('bcrypt')
+let jwt = require('jsonwebtoken')
+
+const Task = require('./../models/task');
+const User = require('./../models/user');
+
 const router = express.Router();
+
 
 router.get('/', async (req, res) => {
     res.render('index');
