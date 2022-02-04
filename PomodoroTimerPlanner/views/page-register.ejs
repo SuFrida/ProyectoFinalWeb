@@ -41,19 +41,16 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 
-                                    <a class="text-center" href="/index"> <h4>Pomodoro Task Manager</h4></a>
+                                    <h4>Pomodoro Task Manager</h4>
         
-                                <form class="mt-5 mb-5 login-input">
+                                <form class="mt-5 mb-5 login-input" action="/page-register" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  placeholder="Nombre" required>
+                                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Correo" required autofocus>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control"  placeholder="Correo" required>
+                                        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Contraseña" required>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Contraseña" required>
-                                    </div>
-                                    <button class="btn login-form__btn submit w-100">Regsitrarme</button>
+                                    <button class="btn login-form__btn submit w-100" type="submit">Regsitrarme</button>
                                 </form>
                                     <p class="mt-5 login-form__footer"> ¿Ya tienes una cuenta? <a href="/page-login" class="text-primary"> Iniciar sesión </a>
                                     </p>

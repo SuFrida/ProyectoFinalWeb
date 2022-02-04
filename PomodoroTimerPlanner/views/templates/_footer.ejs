@@ -40,7 +40,9 @@
     <script src="./plugins/summernote/dist/summernote.min.js"></script>
     <script src="./plugins/summernote/dist/summernote-init.js"></script>
 
-    <script src="./js/dashboard/dashboard-2.js"></script>  
+    <!-- <script src="./js/dashboard/dashboard-2.js"></script>   -->
+
+    <script src="./js/clock.js"></script>
 
     <script>
         window.localStorage.clear();
@@ -55,7 +57,7 @@ event.preventDefault();
 var item = $('#todo-list-item').val();
 if(item) 
 {
-$('#list-items').append("<li><div class='round d-inline-block'><input type='checkbox' id='checkbox' /><label for='checkbox'></label></div><label for='checkbox'>" + item + "</label><a class='remove'><i class='fa fa-trash'></i></a></li>");
+$('#list-items').append("<li><div class='round d-inline-block'><input type='checkbox' id='checkbox' /><label for='checkbox'></label></div><label for='checkbox'>" + item + "</label><a href='/form-editor'><i class='icon-primary'></i></a></li>");
 
 
 
@@ -91,12 +93,12 @@ $(this).parent().toggleClass('completed');
 localStorage.setItem('listItems', $('#list-items').html());
 });
 
-$(document).on('click', '.remove', function() 
-{
-$(this).parent().remove();
+// $(document).on('click', '.remove', function() 
+// {
+// $(this).parent().remove();
 
-localStorage.setItem('listItems', $('#list-items').html());
-});
+// localStorage.setItem('listItems', $('#list-items').html());
+// });
 
 });
     </script>

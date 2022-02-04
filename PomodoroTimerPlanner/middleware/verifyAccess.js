@@ -5,7 +5,7 @@ function verifyToken(req, res, next)
     let token = req.cookies.token || '';
 
     if(!token){
-        return res.redirecct('/page-login')
+        return res.redirect('/page-login')
     }
     else{
         jwt.verify(token, process.env.SECRET, async(err, datos) =>

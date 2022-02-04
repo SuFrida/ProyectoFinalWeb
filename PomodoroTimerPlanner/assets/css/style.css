@@ -14712,3 +14712,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 .note-toolbar, .note-statusbar{
   display: none !important;
 }
+
+.clock{
+  font-size: 5rem;
+}

@@ -11,15 +11,26 @@ const User = require('./../models/user');
 const router = express();
 
 router.get('/', verify, async (req, res) => {
-    console.log(req.userId)
-    let tasks = await Task.find({user_id: req.userId})
-    console.log(tasks)
+    res.render('index');
+})
 
-    res.render('index', {tasks});
+router.post('/add', verify,  async(req, res) => {
+    try {
+        let titulo = req.body.titulo
+        let task = new Task({titulo})
+        task.user_id = req.userId
+        await task.save()
+        res.redirect('/widgets')
+    } catch(err) {
+        console.log(err)
+    }
 })
 
 router.get('/widgets', verify, async(req, res) => {
-    res.render('widgets')
+    let tasks = await Task.find({user_id: req.userId})
+    //console.log(tasks)
+
+    res.render('widgets', {tasks})
 })
 
 router.get('/app-profile', verify, async(req, res) => {
@@ -28,6 +39,7 @@ router.get('/app-profile', verify, async(req, res) => {
 
 router.get('/form-editor', verify, async(req, res) => {
     res.render('form-editor')
+    
 })
 
 router.get('/page-login', async(req, res) => {
@@ -35,25 +47,24 @@ router.get('/page-login', async(req, res) => {
 })
 
 router.post('/page-login', async(req, res) => {
-    let email = req.body.email
-    let plainpassword = req.body.password
-    let user = await User.findOne({email: email})
+    const { email, password } = req.body;
 
+    const user = await User.findOne({email})
+    
     if(!user) {
-        res.redirect('/login')
+        res.redirect('/page-register')
     }
-    else {
-        let valid = await bcrypt.compareSync(plainpassword, user.password)
 
-        if(valid){
-            let token = jwt.sign({id: user.email}, process.env.SECRET, {expiresIn:"1h"})
-            console.log(token)
-            res.cookie('token', token, {httpOnly: true})
-            res.redirect('/')
-        }
-        else {
-            res.redirect('/page-login')
-        }
+    try{
+        await bcrypt.compareSync(password, user.password)
+        console.log('igual')
+
+        const token = jwt.sign({user_id: user.email}, process.env.SECRET, {expiresIn:"1h"})
+        res.cookie("token", token, {httpOnly:true})
+        res.redirect('/')
+    } catch(err) {
+        console.log('noup')
+        res.redirect('/page-login')
     }
 })
 
@@ -61,13 +72,18 @@ router.get('/page-register', async(req, res) => {
     res.render('page-register')
 })
 
-router.post('/addUser', async(req, res) => {
-    let user = new User(req.body)
+router.post('/page-register', async(req, res) => {
+    const { email, password } = req.body;
 
-    user.password = bcrypt.hashSync(user.password, 10)
-    await user.save()
+    try {
+        const user = new User({email, password});
+        await user.save();
 
-    res.redirect('/page-login')
+        const token = jwt.sign({user_id: user.email}, process.env.SECRET, {expiresIn:"1h"});
+        res.redirect('/page-login')
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 router.get('/logoff', (req, res) => {
