@@ -8,3 +8,5 @@ const TaskSchema = Schema ({
     task_status: String,
     user_id: String
 })
+
+module.exports = mongoose.model('tasks', TaskSchema)
