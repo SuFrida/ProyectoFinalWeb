@@ -529,6 +529,10 @@ pre {
   margin-right: auto;
   margin-left: auto; }
 
+.container-fluid h1{
+  margin-bottom: 1.5rem !important;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -7600,7 +7604,7 @@ sub {
   .nav-header .brand-logo {
     z-index: 999; }
     .nav-header .brand-logo a {
-      padding: 1.607rem 1.8125rem;
+      padding: 1rem 1.8125rem;
       display: block; }
       .nav-header .brand-logo a i {
         font-size: 1.375rem; }
@@ -7668,6 +7672,10 @@ sub {
 
 [data-sidebar-style="compact"] .nav-header .brand-title {
   display: none; }
+
+.brand-title h4{
+  color: #ffffff;
+}
 
 [data-sidebar-style="compact"] .nav-header .logo-compact {
   display: block; }
@@ -14700,3 +14708,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
+
+.note-toolbar, .note-statusbar{
+  display: none !important;
+}
+
+.clock{
+  font-size: 5rem;
+}
