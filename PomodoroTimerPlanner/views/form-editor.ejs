@@ -1,4 +1,20 @@
-<%- include ("./templates/_header") %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pomodoro Task Manager</title>
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png"> -->
+    <!-- Custom Stylesheet -->
+    <link href="/plugins/summernote/dist/summernote.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
 
     <!--*******************
         Preloader start
@@ -26,8 +42,8 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="/">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr"><img src="/images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="/images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
                         <h4> Pomodoro Task Manager </h4>
                     </span>
@@ -53,7 +69,7 @@
                     <ul class="clearfix">
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                <img src="images/user/1.png" height="40" width="40" alt="">
+                                <img src="/images/user/1.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
@@ -86,15 +102,6 @@
                         <a class="" href="/" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Página de inicio</span>
                         </a>
-                    </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Iniciar sesión</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/page-login">Iniciar sesión</a></li>
-                            <li><a href="/page-register">Registro</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a class="" href="/widgets" aria-expanded="false">
@@ -137,23 +144,27 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <input type="" class="form-control" placeholder="Fecha Entrega">
-                                </div>
-                                <h3> Titulo </h3>
-                                <div class="summernote">
-                                    <h4> Descripción </h4>
+                        <form action="/form-editor/<%=task._id%>" method="POST">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <input type="" class="form-control" placeholder="Fecha Entrega" name="task_due" value="<%=task.task_due%>">
+                                    </div>
+                                    <h3 name="titulo"> <%=task.titulo%> </h3>
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="task_description" cols="80"
+                                          placeholder="Add a Description"><%= task.task_description %> </textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <button id="save" class="btn btn-success btn-rounded" onclick="save()" type="button">Guardar</button>
-                                <button id="delete" class="btn btn-danger btn-rounded" onclick="" type="button">Borrar</button>
+                            <div class="card">
+                                <div class="card-body">
+                                    <button id="save" class="btn btn-success btn-rounded" type="submit">Guardar</button>
+                                    <a href="/delete/<%=task._id%>" id="delete" class="btn btn-danger btn-rounded">Borrar</a>
+                                    <!-- <button id="delete" class="btn btn-danger btn-rounded" onclick="" type="button">Borrar</button> -->
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -163,4 +174,34 @@
             Content body end
         ***********************************-->
         
-<%- include ("./templates/_footer") %>
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="/plugins/common/common.min.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/gleek.js"></script>
+    <script src="/js/styleSwitcher.js"></script>
+
+    <script src="/plugins/summernote/dist/summernote.min.js"></script>
+    <script src="/plugins/summernote/dist/summernote-init.js"></script>
+
+</body>
+
+</html>

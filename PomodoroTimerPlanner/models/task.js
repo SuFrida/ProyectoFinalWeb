@@ -8,15 +8,18 @@ const TaskSchema = Schema ({
     },
     task_due: {
         type: String,
-        required: false
+        required: true,
+        default: " "
     },
     task_description: {
         type: String,
-        required: false
+        required: true,
+        default: " "
     },
     task_status: {
         type: Boolean ,
-        required: false
+        required: true,
+        default: false
     },
     user_id: String
 })

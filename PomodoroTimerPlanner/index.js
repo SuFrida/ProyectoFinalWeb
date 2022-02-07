@@ -22,7 +22,10 @@ app.set('view engine', 'ejs')
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser())
+
+// app.use(express.static('assets'))
 app.use(express.static(path.join(__dirname, 'assets')));
+
 app.use('/', indexRoutes)
 
 app.listen(app.get('port'), () => {

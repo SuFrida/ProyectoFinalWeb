@@ -37,9 +37,36 @@ router.get('/app-profile', verify, async(req, res) => {
     console.log('profile page')
 })
 
-router.get('/form-editor', verify, async(req, res) => {
-    res.render('form-editor')
+router.get('/form-editor/:id', verify, async(req, res) => {
+    let id = req.params.id
+    let task  = await Task.findById(id)
+    res.render('form-editor', {task})
     
+})
+
+router.post('/form-editor/:id', verify, async(req, res) => {
+    console.log(req.body)
+
+    await Task.updateOne({_id: req.params.id}, req.body)
+    
+    res.redirect('/widgets')
+})
+
+router.get('/delete/:id', verify, async(req, res) => {
+    let id = req.params.id
+    await Task.remove({_id: id})
+    res.redirect('/widgets')
+})
+
+router.get('/status/:id', verify, async(req, res) => {
+    let id = req.params.id
+    let task = await Task.findById(id)
+    task.status = !task.status
+    await task.save()
+
+    console.log('status')
+
+    res.redirect('/widgets')
 })
 
 router.get('/page-login', async(req, res) => {
@@ -57,13 +84,11 @@ router.post('/page-login', async(req, res) => {
 
     try{
         await bcrypt.compareSync(password, user.password)
-        console.log('igual')
 
         const token = jwt.sign({user_id: user.email}, process.env.SECRET, {expiresIn:"1h"})
         res.cookie("token", token, {httpOnly:true})
         res.redirect('/')
     } catch(err) {
-        console.log('noup')
         res.redirect('/page-login')
     }
 })

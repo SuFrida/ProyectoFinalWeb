@@ -88,25 +88,11 @@
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Página de inicio</span>
                         </a>
                     </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Iniciar sesión</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/page-login">Iniciar sesión</a></li>
-                            <li><a href="/page-register">Registro</a></li>
-                        </ul>
-                    </li>
                     <li>
                         <a class="" href="/widgets" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">Planificador de tareas</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="/app-profile" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text">Perfil</span>
-                        </a>
-                    </li> -->
                     <li>
                         <a class="" href="/logoff" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">Cerrar sesión</span>
@@ -175,7 +161,13 @@
                                             <div class="tdl-content">
                                                 <ul id="todo_list">
                                                     <% for(let i = 0; i<tasks.length; i++) { %>
-                                                        <li><label><input type="checkbox"><i></i><span> <%= tasks[i].titulo %> </span><a href="/form-editor" class="ti-pencil"></a></label></li>
+                                                        <li>
+                                                            <label>
+                                                                <input type="checkbox" href="/status/<%=tasks[i]._id%>">
+                                                                <i></i>
+                                                                <span> <%= tasks[i].titulo %> </span><a href="/form-editor/<%=tasks[i]._id%>" class="ti-pencil"></a>
+                                                            </label>
+                                                        </li>
                                                     <% } %>
                                                 </ul>
                                             </div>
@@ -193,9 +185,9 @@
                     </div>
                 </div>
 
-                <h2> Estadísticas </h2>
+                <!-- <h2> Estadísticas </h2> -->
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-3">
                         <div class="card card-widget">
                             <div class="card-body gradient-3">
@@ -251,7 +243,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- <div class="row">
                     <div class="col-3">
